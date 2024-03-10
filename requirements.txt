@@ -1,9 +1,9 @@
-Flask==2.0.2
-authlib==0.15.4
-google-auth-oauthlib==0.4.6
-nltk==3.6.5
-beautifulsoup4==4.10.0
-psycopg2==2.9.2
-gensim==4.2.0
-requests==2.26.0
+Flask
+authlib
+google-auth-oauthlib
+nltk
+beautifulsoup4
+psycopg2
+gensim
+requests
 gunicorn 
