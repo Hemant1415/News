@@ -24,11 +24,11 @@ et-xmlfile==1.1.0
 executing==1.2.0
 fastjsonschema==2.19.1
 Flask==3.0.2
-Flask-Dance==7.1.0
+Flask-Dance
 Flask-Login==0.4.1
 Flask-Mail==0.9.1
 Flask-MySQLdb==2.0.0
-Flask-OAuthlib==0.9.6
+Flask-OAuthlib
 Flask-SQLAlchemy==3.1.1
 fonttools==4.47.2
 gensim==4.3.2
@@ -64,7 +64,7 @@ newapi==0.1.0
 newsapi==0.1.1
 nltk==3.8.1
 numpy==1.26.3
-oauthlib==3.2.2
+oauthlib
 opencv-python==4.9.0.80
 openpyxl==3.1.2
 packaging==23.1
@@ -93,7 +93,7 @@ pyzmq==25.1.1
 referencing==0.33.0
 regex==2023.12.25
 requests==2.31.0
-requests-oauthlib==1.1.0
+requests-oauthlib
 rpds-py==0.18.0
 rsa==4.9
 scikit-image==0.22.0
