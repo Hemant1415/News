@@ -121,3 +121,4 @@ urllib3==2.2.1
 URLObject==2.4.3
 wcwidth==0.2.6
 Werkzeug==3.0.1
+gunicorn
