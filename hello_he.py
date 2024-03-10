@@ -14,12 +14,16 @@ import datetime
 from flask import Flask, render_template, url_for, redirect, request, session
 from google_auth_oauthlib.flow import Flow
 import requests
+nltk.download('averaged_perceptron_tagger')
+nltk.download("stopwords")
+nltk.download("punkt")
+nltk.download('universal_tagset')
 DB_PARAMS = {
-    'user': 'postgres',
-    'password': 'Hemant1415',
-    'host': 'localhost',
-    'port': '1415',
-    'database': 'news'
+    'user': 'news_dfn0_user',
+    'password': 'XKvxnngz8Ut0J89YsYcjQSzQGsefx2pt',
+    'host': 'dpg-cnn0haicn0vc738gjan0-a',
+    'port': '5432',
+    'database': 'news_dfn0'
 }
 
 app = Flask(__name__)
