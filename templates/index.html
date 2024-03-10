@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report of Report</title>
+    <style>
+        table,tr,td,th{
+            border: 2px solid white;
+            color: white;
+            
+        }
+        body {
+        /* Set the background image */
+        background-image: url('/static/backgroud.jpg');
+        /* Background image properties */
+        background-size: cover; /* Cover the entire background */
+        background-repeat: no-repeat; /* Do not repeat the image */
+        background-position: center; /* Center the image */
+        }
+      tr{
+       max-height: 100px; /* Set the maximum height for the cell */
+       overflow: auto; /* Add scrollbars when content overflows */
+        }
+      p{
+    color: white;
+       }
+    </style>
+</head>
+<body>
+    <nav>
+        <div id="header">
+        <h1 style="color: #00FFFF; box-shadow: 0px 0px 5px cyan;"><B>ANTS:</B>NEWS ARTICLE ANALYSER</h1>
+    </div>
+     </nav>
+    <br> <br> 
+    <h2 style="color: #00FFFF; font-size: larger;">Welcome to <b>ANTS</b>!</h2>
+    <article>
+<p>NewsAnalyzer is a powerful tool designed to help you analyze news articles quickly and efficiently.</p>
+ <p>Whether you're a journalist, researcher, or simply interested in staying informed</p>
+ <p> NewsAnalyzer provides valuable insights into the content and sentiment of news articles.</p>
+</article>
+<article style="color: #00FFFF;">
+    <h2><b> OUR ADVANCED NewsAnalyzer WORKS FOR</b></h2>
+    <ul style="color: white;">
+        <li>BBC</li>
+        <li>NDTV</li>
+        <li>Times Of INDIA</li>
+        <li>INDIAN EXPRESS</li>
+        <li> THE WIRE</li>
+        <li>THE HINDU</li>
+    </ul>
+</article>
+    <form method="Post" action="{{ url_for('index') }}" style="color: white;">
+        Enter Url Here:<input type="text" name="URL">
+        <button type="submit">SUBMIT</button>
+    </form>
+    {% if url_entered%}
+    <table style="box-shadow: 0px 0px 5px cyan;">
+        <tr>
+            <th style="color: #00FFFF; font-size: large;">ANALYSED DATA</th>
+        </tr>
+        <tr>
+            <th>NAME_OF_SITE</th>
+            <th> NO_OF_WORD</th>
+            <th>NO_OF_SENTENCE</th>
+            <th>POS_TAG </th>
+            <TH>TITLE_OF_ARTICLE</title></TH>
+            <th>IMPORTANT WORDS IN THE TEXT</th>
+            <th>KEYWORDS (assigned by sites)</th>
+        </tr>
+        <tr>
+            <td>{{site}}</td>
+            <td>{{word}}</td>
+            <td>{{sent}}</td>
+            <td>{{pos}}</td>
+            <td>{{title}}</td>
+            <td>{{genre}}</td>
+            <td>{{key}}</td>
+        </tr>
+        <tr>
+            <th>CLEANED_TEXT</th>
+        </tr>
+        <TR>
+            <td style="max-height: 100px; overflow: auto;">{{cleaned}}</td>
+        </TR>
+    </table>
+    {% endif %}
+    {{text}}
+    <b style="color: white;">{{error}}</b>
+    <br><br><br>
+    <button>
+        <a href="/login">ADMIN SIGN UP</a>
+    </button>
+    <button>
+        <a href="/out">log out</a>
+    </button>
+</body>
+</html>
