@@ -228,6 +228,14 @@ def login():
         username = request.form['username']
         password = request.form['password']
         if username == DB_PARAMS["user"] and password == DB_PARAMS["password"]:
+            return redirect(url_for('history')) 
+        else:
+            fault = "Invalid Information"
+            return render_template('login.html', fault=fault)
+    return render_template('login.html')
+    @app.route('/history')
+    def history():
+        if 'google_token' in session:
             conn = psycopg2.connect(**DB_PARAMS)
             cursor = conn.cursor()
             cursor.execute("SELECT * FROM News")
@@ -235,10 +243,9 @@ def login():
             data=reversed(data)
             cursor.close()
             conn.close()
-            return render_template('history.html', data=data) 
+            return render_template('history.html',data)
         else:
-            fault = "Invalid Information"
-            return render_template('login.html', fault=fault)
-    return render_template('login.html')
+            return redirect(url_for('out'))
+            return 
 if __name__ == '__main__':
     app.run(debug=True)
