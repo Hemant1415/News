@@ -227,7 +227,7 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        if username == DB_PARAMS["user"] and password == DB_PARAMS["password"]:
+        if username == "postgres" and password == "Hemant1415":
             return redirect(url_for('history')) 
         else:
             fault = "Invalid Information"
