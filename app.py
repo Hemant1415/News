@@ -233,7 +233,7 @@ def login():
             fault = "Invalid Information"
             return render_template('login.html', fault=fault)
     return render_template('login.html')
-    @app.route('/history')
+@app.route('/history')
 def history():
     if 'google_token' in session:
         conn = psycopg2.connect(**DB_PARAMS)
