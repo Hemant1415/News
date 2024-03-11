@@ -28,15 +28,15 @@ DB_PARAMS = {
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "THIS SHOULD BE SECRET"
-app.config['GOOGLE_CLIENT_ID'] = "7378263340-gv1fo5t7gpskm8is6iuh62ogp3t2jp72.apps.googleusercontent.com"
-app.config['GOOGLE_CLIENT_SECRET'] = "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"
+app.config['GOOGLE_CLIENT_ID'] = "7378263340-080j378qi5v96jcipg0uc5vs17s9shd0.apps.googleusercontent.com"
+app.config['GOOGLE_CLIENT_SECRET'] = "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"
 
 # Define OAuth flow
 client_secrets_file = 'we.json'  # Replace with your actual client secrets file
 scopes = ['https://www.googleapis.com/auth/userinfo.profile',
           'https://www.googleapis.com/auth/userinfo.email',
           'openid']
-redirect_uri = 'http://127.0.0.1:5000/callback'
+redirect_uri = 'https://news-9maa.onrender.com/callback'
 flow = Flow.from_client_secrets_file(client_secrets_file, scopes=scopes, redirect_uri=redirect_uri)
 @app.route('/', methods=['GET', 'POST'])
 def home():
