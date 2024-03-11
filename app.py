@@ -232,6 +232,7 @@ def login():
             cursor = conn.cursor()
             cursor.execute("SELECT * FROM News")
             data = cursor.fetchall()
+            data=reversed(data)
             cursor.close()
             conn.close()
             return render_template('history.html', data=data) 
