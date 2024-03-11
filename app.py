@@ -234,18 +234,17 @@ def login():
             return render_template('login.html', fault=fault)
     return render_template('login.html')
     @app.route('/history')
-    def history():
-        if 'google_token' in session:
-            conn = psycopg2.connect(**DB_PARAMS)
-            cursor = conn.cursor()
-            cursor.execute("SELECT * FROM News")
-            data = cursor.fetchall()
-            data=reversed(data)
-            cursor.close()
-            conn.close()
-            return render_template('history.html',data)
-        else:
-            return redirect(url_for('out'))
-            return 
+def history():
+    if 'google_token' in session:
+        conn = psycopg2.connect(**DB_PARAMS)
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM News")
+        data = cursor.fetchall()
+        data=reversed(data)
+        cursor.close()
+        conn.close()
+        return render_template('history.html',data)
+    else:
+        return redirect(url_for('out'))
 if __name__ == '__main__':
     app.run(debug=True)
