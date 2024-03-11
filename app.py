@@ -243,8 +243,9 @@ def history():
         data=reversed(data)
         cursor.close()
         conn.close()
-        return render_template('history.html',data)
+        return render_template('history.html',data=data)
     else:
         return redirect(url_for('out'))
+    return render_template('history.html')
 if __name__ == '__main__':
     app.run(debug=True)
