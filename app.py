@@ -63,9 +63,9 @@ def protected():
     if 'google_token' in session:
         return redirect(url_for('index'))
     else:
-        return redirect(url_for('out'))
+        return redirect(url_for('logout'))
 # logout method
-@app.route('/out')
+@app.route('/logout')
 def logout():
     session.pop('google_token', None)
     return render_template('logout.html')
