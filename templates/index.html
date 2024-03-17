@@ -34,7 +34,7 @@
     </div>
      </nav>
     <br> <br> 
-    <h2 style="color: #00FFFF; font-size: larger;">Welcome to <b>ANTS</b>!</h2>
+    <h2 style="color: #00FFFF; font-size: larger;">Welcome <b style="color:white; font-size: large; text-shadow: 0px 0px 5px cyan;">{{user_name}}</b> to <b>ANTS</b>!</h2>
     <article>
 <p>NewsAnalyzer is a powerful tool designed to help you analyze news articles quickly and efficiently.</p>
  <p>Whether you're a journalist, researcher, or simply interested in staying informed</p>
@@ -43,8 +43,8 @@
 <article style="color: #00FFFF;">
     <h2><b> OUR ADVANCED NewsAnalyzer WORKS FOR</b></h2>
     <ul style="color: white;">
-        <li>BBC</li>
         <li>NDTV</li>
+        <li>BBC</li>
         <li>Times Of INDIA</li>
         <li>INDIAN EXPRESS</li>
         <li> THE WIRE</li>
@@ -89,9 +89,11 @@
     {{text}}
     <b style="color: white;">{{error}}</b>
     <br><br><br>
+    {% if admin%}
     <button>
         <a href="/login">ADMIN SIGN UP</a>
     </button>
+    {% endif %}
     <button>
         <a href="/logout">log out</a>
     </button>
