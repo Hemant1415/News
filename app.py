@@ -1,3 +1,4 @@
+# importing all required modules
 from flask import Flask, render_template, url_for, redirect, request, session
 from authlib.integrations.flask_client import OAuth
 from google_auth_oauthlib.flow import Flow
@@ -18,6 +19,7 @@ nltk.download('averaged_perceptron_tagger')
 nltk.download("stopwords")
 nltk.download("punkt")
 nltk.download('universal_tagset')
+# info of database
 DB_PARAMS = {
     'user': 'news_dfn0_user',
     'password': 'XKvxnngz8Ut0J89YsYcjQSzQGsefx2pt',
@@ -27,6 +29,7 @@ DB_PARAMS = {
 }
 
 app = Flask(__name__)
+#google authentication process
 app.config['SECRET_KEY'] = "THIS SHOULD BE SECRET"
 app.config['GOOGLE_CLIENT_ID'] = "7378263340-080j378qi5v96jcipg0uc5vs17s9shd0.apps.googleusercontent.com"
 app.config['GOOGLE_CLIENT_SECRET'] = "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"
@@ -54,21 +57,23 @@ def callback():
     flow.fetch_token(code=request.args.get('code'))
     session['google_token'] = flow.credentials.token
     return redirect(url_for('protected'))
-
+#protected method
 @app.route('/protected',methods=['POST', 'GET'])
 def protected():
     if 'google_token' in session:
         return redirect(url_for('index'))
     else:
         return redirect(url_for('out'))
-
+# logout method
 @app.route('/out')
 def logout():
     session.pop('google_token', None)
     return render_template('logout.html')
+
+# cleaning task
 @app.route("/index", methods=['POST', 'GET'])
 def index():
-    url_entered = False
+    url_entered = False # for not showing the table without entering any url
     time = datetime.datetime.now()
     time = time.strftime("%H:%M %d %B %Y")
     site = ""
@@ -84,7 +89,7 @@ def index():
     if request.method == "POST":
         url = request.form["URL"]
         text = url
-        
+        # checking weather the url is correct or not
         try:
             page = requests.get(url)
         except Exception as e:
@@ -113,6 +118,7 @@ def index():
             pos[i] = list2.count(i)
         
         word = len(word_tokenize(word))
+        # getting information from html page
         title = soup.find("meta", {"property": "og:title"}).get("content")
         site = soup.find("meta", {"property": "og:site_name"}).get("content")
         list1 = nltk.corpus.stopwords.words("english")
@@ -124,7 +130,7 @@ def index():
                 if i not in list1:
                     list.append(i)
             return list
-        
+        # implementing gensim
         transfer_to_lower = lambda s: s.lower()
         remove_single_char = lambda s: re.sub(r"\b\w\b", "", s)  # Modify to keep full-stop punctuation
         CLEAN_FILTERS = [strip_tags, strip_numeric, strip_punctuation, strip_multiple_whitespaces, transfer_to_lower, remove_stopwords, remove_single_char]
@@ -156,7 +162,7 @@ def index():
                     key = list(set(key))
                 except Exception as e:
                     key = key1
-        
+        # connecting to database
         try:
             # Connect to the PostgreSQL database
             conn = psycopg2.connect(**DB_PARAMS)
