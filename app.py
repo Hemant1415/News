@@ -60,7 +60,21 @@ def callback():
 #protected method
 @app.route('/protected',methods=['POST', 'GET'])
 def protected():
+    global admin
+    admin=False
     if 'google_token' in session:
+        access_token = session.get("google_token")
+        if access_token:
+            headers = {'Authorization': f'Bearer {access_token}'}
+            response = requests.get('https://www.googleapis.com/oauth2/v3/userinfo', headers=headers)
+            if response.status_code == 200:
+                user_data = response.json()  # Accessing data as a dictionary
+                user_data=user_data.get("email")
+                global user_name
+                user_name=re.sub("@gmail.com","",user_data)
+                print(user_data)
+                if user_data=="hemantjangde1415@gmail.com":
+                    admin=True
         return redirect(url_for('index'))
     else:
         return redirect(url_for('logout'))
@@ -227,7 +241,7 @@ def index():
         
         return render_template("index.html", word=word, sent=sent, pos=pos, cleaned=cleaned, title=title, genre=genre, key=key, site=site, text=text, url_entered=url_entered)
     
-    return render_template("index.html", url_entered=url_entered)
+    return render_template("index.html", url_entered=url_entered,user_name=user_name,admin=admin)
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
