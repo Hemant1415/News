@@ -108,7 +108,7 @@ def index():
             page = requests.get(url)
         except Exception as e:
             error = "INVALID URL"
-            return render_template("index.html", url_entered=url_entered, error=error)
+            return render_template("index.html", url_entered=url_entered, error=error,admin=admin,user_name=user_name)
         
         url_entered = True
         soup = BeautifulSoup(page.content, "html.parser")
