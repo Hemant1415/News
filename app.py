@@ -239,7 +239,7 @@ def index():
                 conn.close()
                 print("PostgreSQL connection is closed")
         
-        return render_template("index.html", word=word, sent=sent, pos=pos, cleaned=cleaned, title=title, genre=genre, key=key, site=site, text=text, url_entered=url_entered)
+        return render_template("index.html", word=word, sent=sent, pos=pos, user_name=user_name,cleaned=cleaned, title=title, genre=genre, key=key, site=site, text=text, url_entered=url_entered)
     
     return render_template("index.html", url_entered=url_entered,user_name=user_name,admin=admin)
 @app.route('/login', methods=['GET', 'POST'])
